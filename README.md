@@ -1,1 +1,330 @@
-# virus.prank
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚠️ PERINGATAN SISTEM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #000;
+            overflow-x: hidden;
+        }
+
+        .virus-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(45deg, #ff0000, #8b0000);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            animation: glitch 0.3s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            25% { transform: translate(-2px, 2px); }
+            50% { transform: translate(2px, -2px); }
+            75% { transform: translate(-2px, -2px); }
+        }
+
+        .warning-icon {
+            font-size: 100px;
+            animation: pulse 0.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .warning-text {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .warning-details {
+            font-size: 18px;
+            margin: 10px;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        .popup {
+            position: fixed;
+            background: white;
+            border: 3px solid #ff0000;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(255,0,0,0.5);
+            z-index: 1000;
+            animation: shake 0.5s infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .popup-header {
+            background: #ff0000;
+            color: white;
+            padding: 10px;
+            margin: -20px -20px 15px -20px;
+            border-radius: 7px 7px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .close-btn {
+            background: white;
+            color: #ff0000;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .close-btn:hover {
+            background: #ffcccc;
+        }
+
+        .popup-content {
+            color: #333;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .gift-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .gift-box {
+            font-size: 150px;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .gift-text {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .photo-container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            margin: 20px;
+            max-width: 90%;
+        }
+
+        .photo-placeholder {
+            width: 300px;
+            height: 400px;
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f0f;
+            position: absolute;
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .loading-bar {
+            width: 80%;
+            height: 30px;
+            background: #333;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff00, #ffff00, #ff0000);
+            animation: loading 2s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        @keyframes loading {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Layar Virus Utama -->
+    <div id="virusScreen" class="virus-screen">
+        <div class="warning-icon">⚠️</div>
+        <div class="warning-text">PERINGATAN SISTEM!</div>
+        <div class="warning-details">
+            HP ANDA TELAH TERINFEKSI VIRUS!<br>
+            🦠 Virus Terdeteksi: 47<br>
+            📱 Sistem Terancam!<br>
+            ⚡ Batere Akan Habis!
+        </div>
+        <div class="loading-bar">
+            <div class="loading-progress">Memindai Ancaman...</div>
+        </div>
+    </div>
+
+    <!-- Container untuk Pop-ups -->
+    <div id="popupContainer"></div>
+
+    <!-- Layar Hadiah -->
+    <div id="giftScreen" class="gift-screen hidden">
+        <div class="gift-box">🎁</div>
+        <div class="gift-text">HAHAHA KENA PRANK! 😂</div>
+        <div class="gift-text" style="font-size: 24px;">Ini hadiah buat kamu:</div>
+        <div class="photo-container">
+           <img src="melody..jpeg" style="width: 300px; height: 400px; border-radius: 10px; object-fit: cover;">
+                📸<br>
+                TARUH FOTO KAMU DI SINI<br>
+                <small>(Edit bagian ini untuk memasukkan foto)</small>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let popupsClosed = 0;
+        const totalPopups = 8;
+        const popupMessages = [
+            "⚠️ VIRUS TERDETEKSI! Segera tutup peringatan ini!",
+            "🚨 BAHAYA! Data Anda dalam ancaman!",
+            "⛔ SISTEM ERROR! Tutup jendela ini sekarang!",
+            "🔥 HP ANDA TERBAKAR! (Tidak beneran kok 😄)",
+            "💀 VIRUS GANAS MENYERANG!",
+            "🤖 ROBOT JAHAT MASUK HP KAMU!",
+            "👾 ALIEN MENGAMBIL ALIH SISTEM!",
+            "🎭 INI POP-UP TERAKHIR! (Mungkin...)"
+        ];
+
+        // Tampilkan layar virus selama 3 detik
+        setTimeout(() => {
+            document.getElementById('virusScreen').style.display = 'none';
+            createPopups();
+        }, 3000);
+
+        function createPopups() {
+            for (let i = 0; i < totalPopups; i++) {
+                setTimeout(() => {
+                    createPopup(i);
+                }, i * 400);
+            }
+        }
+
+        function createPopup(index) {
+            const popup = document.createElement('div');
+            popup.className = 'popup';
+            popup.style.top = Math.random() * 60 + 10 + '%';
+            popup.style.left = Math.random() * 60 + 10 + '%';
+            
+            popup.innerHTML = `
+                <div class="popup-header">
+                    <span>⚠️ PERINGATAN SISTEM</span>
+                    <button class="close-btn" onclick="closePopup(this, ${index})">X</button>
+                </div>
+                <div class="popup-content">
+                    ${popupMessages[index]}<br><br>
+                    <strong>Pop-up ${index + 1} dari ${totalPopups}</strong>
+                </div>
+            `;
+            
+            document.getElementById('popupContainer').appendChild(popup);
+        }
+
+        function closePopup(btn, index) {
+            btn.closest('.popup').remove();
+            popupsClosed++;
+            
+            if (popupsClosed === totalPopups) {
+                showGift();
+            }
+        }
+
+        function showGift() {
+            document.getElementById('giftScreen').classList.remove('hidden');
+            createConfetti();
+        }
+
+        function createConfetti() {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 3 + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 100);
+            }
+        }
+    </script>
+</body>
+</html>
